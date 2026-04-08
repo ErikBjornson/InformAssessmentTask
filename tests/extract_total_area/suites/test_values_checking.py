@@ -22,10 +22,10 @@ class TestExtractTotalAreaCheckingValues:
         Проверка конвертации текста с указанным
         целочисленным значением площади объекта.
         """
-        value = 123
+        square_value = 123
 
-        text = f"{value} м2"
-        expected_result = float(value)
+        text = f"{square_value} м2"
+        expected_result = float(square_value)
 
         current_result = extract_total_area(text)
         assert current_result == expected_result
@@ -74,7 +74,7 @@ class TestExtractTotalAreaCheckingValues:
         нулевым значением площади объекта.
         """
         text = "0 м2"
-        expected_result = 0.0
+        expected_result = 0
 
         current_result = extract_total_area(text)
         assert current_result == expected_result
@@ -89,10 +89,10 @@ class TestExtractTotalAreaCheckingValues:
         Проверка конвертации текста с указанным
         отрицательным значением площади объекта.
         """
-        value = -123
+        square_value = -123
 
-        text = f"{value} м2"
-        expected_result = abs(float(value))
+        text = f"{square_value} м2"
+        expected_result = abs(float(square_value))
 
         current_result = extract_total_area(text)
         assert current_result == expected_result
