@@ -1,37 +1,37 @@
 import allure
 import pytest
 
-from src import extract_total_area
-from tests.extract_total_area.parameters import ExtractTotalAreaParams
+from src import split_num_and_text
+from tests.split_num_and_text.parameters import SplitNumAndTextParams
 
 
 @allure.epic("Выполнение тестового задания")
-@allure.feature("Функция возврата площади объекта из текста")
-@allure.story("Тестирование форматов вводимых площадей")
-class TestExtractTotalAreaCheckingFormatting:
+@allure.feature("Функция возврата цены и валюты объекта из текста")
+@allure.story("Тестирование форматов вводимых цен и валют")
+class TestSplitNumAndTextCheckingFormatting:
     """
     Класс с автотестами для проверки конвертации передаваемого
-    в функцию ```extract_total_area``` текста некорректного формата.
+    в функцию ```split_num_and_text``` текста некорректного формата.
     """
 
     @pytest.mark.parametrize(
         'arguments',
-        ExtractTotalAreaParams.formattings,
+        SplitNumAndTextParams.formattings,
         ids=(
             "empty_text",
             "without_spaces",
             "with_lots_of_spaces",
-            "only_with_square_value",
-            "only_with_square_unit",
-            "with_special_symbols_before_value",
+            "with_special_symbols_before_price",
             "with_special_symbols_instead_of_space",
-            "with_several_square_units",
+            "with_special_symbols_in_currency",
+            "without_price",
+            "without_currency",
         ),
     )
     def test_check_formatting(self, arguments):
         description = """
             Тест проверяет, что текст некорректного формата ({}),
-            конвертируется корректно в значение площади объекта.
+            корректно разделяется на значение цены объекта и валюту.
             """
         allure.dynamic.title(arguments.test_title)
         allure.dynamic.description(description.format(arguments.test_desc))
@@ -39,5 +39,5 @@ class TestExtractTotalAreaCheckingFormatting:
         text = arguments.text
         expected_result = arguments.expected_result
 
-        current_result = extract_total_area(text)
+        current_result = split_num_and_text(text)
         assert current_result == expected_result

@@ -104,7 +104,7 @@ class ExtractTotalAreaParams:
     formattings = [
         parametrizer(
             "Конвертация пустого текста",
-            "",
+            "пустая строка",
             "",
             None,
         ),
