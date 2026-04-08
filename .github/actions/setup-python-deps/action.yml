@@ -1,5 +1,5 @@
-name: 'Setup Python and dependencies'
-description: 'Installs Python and deps from requirements.txt'
+name: Setup Python and deps
+description: Installs Python and deps from requirements.txt
 
 inputs:
   python-version:
