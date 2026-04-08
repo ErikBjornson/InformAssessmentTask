@@ -1,0 +1,1 @@
+from .functions_for_testing import extract_total_area, split_num_and_text
