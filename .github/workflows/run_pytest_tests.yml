@@ -7,16 +7,15 @@ on:
     branches: [ main, master, develop ]
   workflow_dispatch:
     inputs:
-      run_extract_total_area_func_tests:
-        description: 'Run extract_total_area function tests'
-        required: false
-        default: false
-        type: boolean
-      run_split_num_and_text_func_tests:
-        description: 'Run split_num_and_text function tests'
-        required: false
-        default: false
-        type: boolean
+      tests_scope:
+        description: 'Choice of scope for running tests'
+        required: true
+        type: choice
+        options:
+          - extract_total_area tests
+          - split_num_and_text tests
+          - nothing
+        default: 'nothing'
 
 jobs:
   flake8:
@@ -31,7 +30,7 @@ jobs:
 
   extract_total_area_func_tests:
     needs: flake8
-    if: github.event_name == 'workflow_dispatch' && inputs.run_extract_total_area_func_tests == true
+    if: github.event_name == 'workflow_dispatch' && inputs.tests_scope == 'extract_total_area tests'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,7 +42,7 @@ jobs:
 
   split_num_and_text_func_tests:
     needs: flake8
-    if: github.event_name == 'workflow_dispatch' && inputs.run_split_num_and_text_func_tests == true
+    if: github.event_name == 'workflow_dispatch' && inputs.tests_scope == 'split_num_and_text tests'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
