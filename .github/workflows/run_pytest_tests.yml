@@ -12,6 +12,7 @@ on:
         required: true
         type: choice
         options:
+          - all tests
           - extract_total_area tests
           - split_num_and_text tests
           - nothing
@@ -27,6 +28,18 @@ jobs:
           python-version: '3.11'
       - name: Run flake8
         run: flake8 .
+
+  all_tests:
+    needs: flake8
+    if: github.event_name == 'workflow_dispatch' && inputs.tests_scope == 'all_tests'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-python-deps
+        with:
+          python-version: '3.11'
+      - name: Run all tests
+        run: pytest -rsx
 
   extract_total_area_func_tests:
     needs: flake8
