@@ -7,6 +7,7 @@ from src import extract_total_area
 @allure.epic("Выполнение тестового задания")
 @allure.feature("Функция возврата площади объекта из текста")
 @allure.story("Тестирование значений площадей")
+@pytest.mark.extract_total_area
 class TestExtractTotalAreaCheckingValues:
     """
     Класс с автотестами для проверки корректности возвращаемых

@@ -8,6 +8,7 @@ from tests.extract_total_area.parameters import ExtractTotalAreaParams
 @allure.epic("Выполнение тестового задания")
 @allure.feature("Функция возврата площади объекта из текста")
 @allure.story("Тестирование единиц измерения площадей")
+@pytest.mark.extract_total_area
 class TestExtractTotalAreaCheckingUnits:
     """
     Класс с автотестами для проверки корректности конвертации указываемых

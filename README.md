@@ -68,6 +68,19 @@ pytest -rsx
 
 Ключ ```-rsx``` здесь указывается для полного вывода логов ошибок, если часть тестов окажется сломанной.
 
+В проекте тесты разделены на две части с помощью марок ```@pytest.mark.extract_total_area``` и ```@pytest.mark.split_num_and_text```. Если требуется запустить тесты только для проверки корректности работы какой-то одной функции, то можно выполнить следующую команду:
+```Bash
+pytest -rsx -m extract_total_area
+```
+
+или
+
+```Bash
+pytest -rsx -m split_num_and_text
+```
+
+После выполнения одной из этих команд в консоль будут выведены результаты прогона тестов только для функции ```extract_total_area``` или только для функции ```split_num_and_text```.
+
 ### Запуск через GitHub Actions
 
 Для запуска тестов через GitHub Actions необходимо открыть репозиторий проекта и перейти на вкладку Actions в верхней части страницы (либо просто перейти по [ссылке](https://github.com/ErikBjornson/InformAssessmentTask/actions)).
@@ -101,7 +114,14 @@ allure --version
 
 3. Затем нужно перейти в рабочую директорию проекта, запустить виртуальное окружение и сгенерировать Allure-отчёт следующим образом:
 ```Bash
+# если хотим сгенерировать отчёт по всем существующим тестам
 pytest -rsx --alluredir=allure-results --clean-alluredir
+
+# если хотим сгенерировать отчёт только по тестам для функции extract_total_area
+pytest -rsx -m extract_total_area --alluredir=allure-results --clean-alluredir
+
+# если хотим сгенерировать отчёт только по тестам для функции split_num_and_text
+pytest -rsx -m split_num_and_text --alluredir=allure-results --clean-alluredir
 ```
 
 4. После генерации отчёта его остаётся только сформировать и запустить на локальном веб-сервере с помощью команды:

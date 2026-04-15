@@ -8,6 +8,7 @@ from tests.split_num_and_text.parameters import SplitNumAndTextParams
 @allure.epic("Выполнение тестового задания")
 @allure.feature("Функция возврата цены и валюты объекта из текста")
 @allure.story("Тестирование форматов вводимых цен и валют")
+@pytest.mark.split_num_and_text
 class TestSplitNumAndTextCheckingFormatting:
     """
     Класс с автотестами для проверки конвертации передаваемого
