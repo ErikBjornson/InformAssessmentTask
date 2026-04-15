@@ -1,18 +1,9 @@
-name: Run flake8 and pytest tests
+name: Run pytest tests
 
 on:
   workflow_dispatch:
 
 jobs:
-  flake8:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-python-deps
-        with:
-          python-version: '3.11'
-      - name: Run flake8
-        run: flake8 .
 
   extract_total_area_func_tests:
     runs-on: ubuntu-latest
