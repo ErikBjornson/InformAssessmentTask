@@ -5,6 +5,7 @@ inputs:
   python-version:
     required: false
     default: '3.11'
+    description: "Python version that will be installed"
 
 runs:
   using: 'composite'
@@ -13,7 +14,7 @@ runs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ inputs.python-version }}
-    
+
     - name: Cache pip packages
       uses: actions/cache@v3
       with:
@@ -21,7 +22,7 @@ runs:
         key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
-    
+
     - name: Install dependencies
       shell: bash
       run: |

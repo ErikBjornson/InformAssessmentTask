@@ -1,0 +1,13 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace      # Удаляет лишние пробелы в конце строк
+      - id: end-of-file-fixer        # Добавляет пустую строку в конце файла
+      - id: check-yaml               # Проверяет синтаксис YAML-файлов
+      - id: check-added-large-files  # Предупреждает о добавлении слишком больших файлов
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.3.0
+    hooks:
+      - id: flake8
